@@ -6,7 +6,5 @@ def mains := [
 ]
 
 def main : IO Unit := do
-  for (main, quest) in mains.zipIdx 1 do
-    .println s!"Quest {quest}"
+  for main in mains.intersperse (IO.println "") do
     main
-    if quest < mains.length then IO.println ""

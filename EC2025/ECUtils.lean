@@ -1,10 +1,11 @@
 import EC2025.SolutionUtils
 
-/-- An Everybody Codes solution, consisting of three `SolutionPart`s. -/
+/-- An Everybody Codes solution, consisting of three `SolutionPart`s, as well as the quest number. -/
 structure ECSolution {α : Type u} {β : Type v} {γ : Type w} where
   part1 : @SolutionPart α
   part2 : @SolutionPart β
   part3 : @SolutionPart γ
+  quest : String := by exact quest
 
 /-- An Everybody Codes input, consisting of three `System.FilePath`s. -/
 structure ECInput where
@@ -28,6 +29,7 @@ def ECInputOfQuest (quest : String) : ECInput where
 /-- Runs a solution, printing all three answers. -/
 def ECSolution.run {α β γ} (solution : @ECSolution α β γ) [ToString α] [ToString β] [ToString γ]
     (input : ECInput := by exact ECInputOfQuest quest) := do
+  IO.println s!"Quest {solution.quest}:"
   solution.part1.run "Part 1" input.file1
   solution.part2.run "Part 2" input.file2
   solution.part3.run "Part 3" input.file3
