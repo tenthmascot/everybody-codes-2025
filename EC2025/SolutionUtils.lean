@@ -3,7 +3,7 @@ def SolutionPart {α} := String → α
 
 /-- Solve a part, given an input file. -/
 def SolutionPart.solve {α} (solution : @SolutionPart α) (file : System.FilePath) : IO α := do
-  IO.FS.readFile file >>= (pure ∘ solution)
+  IO.FS.readFile file >>= pure ∘ solution
 
 /-- Runs a solution to a part, printing the answer. -/
 def SolutionPart.run {α} [ToString α] (part : String)
