@@ -2,6 +2,11 @@ name = "EC2025"
 version = "0.1.0"
 defaultTargets = ["ec2025"]
 
+[[require]]
+name = "batteries"
+scope = "leanprover-community"
+rev = "main"
+
 [[lean_lib]]
 name = "EC2025"
 
