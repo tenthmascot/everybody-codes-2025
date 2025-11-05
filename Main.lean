@@ -6,6 +6,22 @@ def mains := [
   Quest02.main,
 ]
 
-def main : IO Unit := do
-  for main in mains.intersperse (IO.println "") do
-    main
+def main (args : List String) : IO Unit := do
+  if args.length > 1 then
+    IO.println "Too many arguments."
+    IO.println "Run with no arguments to run all quests,"
+    IO.println "or provide one argument (1~20) to run that quest."
+  else if h : args.length = 1 then
+    let quest := args[0].toNat?
+    if h : quest.isSome = true then
+      let quest := quest.get h
+      if h : 1 ≤ quest ∧ quest ≤ mains.length then
+        let main := mains[quest - 1]
+        main
+      else
+        IO.println "Quest number is out of bounds."
+    else
+      IO.println "Quest number is not a natural number."
+  else
+    for main in mains.intersperse (IO.println "") do
+      main
