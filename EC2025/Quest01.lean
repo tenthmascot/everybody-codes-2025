@@ -9,27 +9,30 @@ def quest := "01"
 def parse_step (op : String) :=
   (if String.Pos.Raw.get! op 0 == 'R' then 1 else -1) * (op.drop 1).toInt!
 
-def parse (raw : String) : List String × List Int :=
-  let lines := raw.splitOn "\n"
-  (lines[0]!.splitOn ",", (lines[2]!.splitOn ",").map parse_step)
+structure Data where
+  names : List String
+  ops : List Int
 
-def part1' (names : List String) (ops : List Int) : String :=
+def parse (raw : String) : Data :=
+  let lines := raw.splitOn "\n"
+  ⟨lines[0]!.splitOn ",", (lines[2]!.splitOn ",").map parse_step⟩
+
+def part1 (data : Data) : String :=
+  let ⟨names, ops⟩ := data
   let step : Int → Int → Int :=
     fun i di => min (max (i + di) 0) (names.length - 1)
   let i := ops.foldl step 0
   names[i.toNat]!
 
-def part1 (input : String) := part1'.uncurry (parse input)
-
-def part2' (names : List String) (ops : List Int) : String :=
+def part2 (data : Data) : String :=
+  let ⟨names, ops⟩ := data
   let step : Int → Int → Int :=
     fun i di => (i + di) % names.length
   let i := ops.foldl step 0
   names[i.toNat]!
 
-def part2 (input : String) := part2'.uncurry (parse input)
-
-def part3' (names : List String) (ops : List Int) : String :=
+def part3 (data : Data) : String :=
+  let ⟨names, ops⟩ := data
   let step : List String → Int → List String :=
     fun names i =>
       let i := (i % names.length).toNat
@@ -37,9 +40,7 @@ def part3' (names : List String) (ops : List Int) : String :=
   let names := ops.foldl step names
   names[0]!
 
-def part3 (input : String) := part3'.uncurry (parse input)
-
-def solution := ECSolution.mk part1 part2 part3
+def solution := ECSolution.mkOfParse parse part1 part2 part3
 
 def main := solution.run
 
