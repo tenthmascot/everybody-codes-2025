@@ -10,6 +10,6 @@ def SolutionPart.run {α} [ToString α] (part : String)
   (solution : @SolutionPart α) (file : System.FilePath) := do
   try
     let answer ← solution.solve file
-    .println s!"Answer to {part}: {answer}"
+    IO.println s!"Answer to {part}: {answer}"
   catch e =>
-    .println s!"Error while solving {part}: {e}"
+    IO.println s!"Error while solving {part}: {e}"
