@@ -7,6 +7,11 @@ structure ECSolution {α : Type u} {β : Type v} {γ : Type w} where
   part3 : @SolutionPart γ
   quest : String := by exact quest
 
+/-- An alternate convenience constructor for `ECSolution` that applies a function as preprocessing for all three parts. -/
+def ECSolution.mkOfParse {α β γ ω} (parse : String → ω) (part1 : ω → α) (part2 : ω → β)
+    (part3 : ω → γ) (quest : String := by exact quest) :=
+  ECSolution.mk (part1 ∘ parse) (part2 ∘ parse) (part3 ∘ parse)
+
 /-- An Everybody Codes input, consisting of three `System.FilePath`s. -/
 structure ECInput where
   file1 : System.FilePath
