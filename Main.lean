@@ -10,7 +10,7 @@ def main (args : List String) : IO Unit := do
   if args.length > 1 then
     IO.println "Too many arguments."
     IO.println "Run with no arguments to run all quests,"
-    IO.println "or provide one argument (1~20) to run that quest."
+    IO.println s!"or provide one argument (1~{mains.length}) to run that quest."
   else if h : args.length = 1 then
     let quest := args[0].toNat?
     if h : quest.isSome = true then
