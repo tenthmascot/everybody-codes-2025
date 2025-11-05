@@ -1,3 +1,5 @@
+import EC2025.Utils
+
 /-- A solution to a part. -/
 def SolutionPart {α} := String → α
 
