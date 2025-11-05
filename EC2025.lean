@@ -3,3 +3,4 @@
 import EC2025.SolutionUtils
 import EC2025.ECUtils
 import EC2025.Quest01
+import EC2025.Quest02

@@ -2,9 +2,9 @@ import EC2025.ECUtils
 import Std
 import Batteries
 
-def quest := "01"
-
 namespace Quest01
+
+def quest := "01"
 
 def parse_step (op : String) :=
   (if String.Pos.Raw.get! op 0 == 'R' then 1 else -1) * (op.drop 1).toInt!
