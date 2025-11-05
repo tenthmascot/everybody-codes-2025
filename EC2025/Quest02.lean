@@ -1,6 +1,5 @@
 import EC2025.ECUtils
-import Std
-import Batteries
+open Std Batteries
 
 namespace Quest02
 
