@@ -4,6 +4,7 @@ import EC2025
 def mains := [
   Quest01.main,
   Quest02.main,
+  Quest03.main,
 ]
 
 def main (args : List String) : IO Unit := do
