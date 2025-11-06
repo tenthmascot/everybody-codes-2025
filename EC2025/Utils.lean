@@ -1,4 +1,5 @@
 import Batteries
+import EC2025.MathlibUtils -- if Mathlib is imported, this should not be imported
 open Std Batteries
 
 /-- Returns the list `l` without duplicates, in some order.
