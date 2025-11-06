@@ -23,3 +23,5 @@ def part3 (a : List Int) : Nat :=
 def solution := ECSolution.mkOfParse parse part1 part2 part3
 
 def main := solution.run
+
+end Quest03

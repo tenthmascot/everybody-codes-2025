@@ -42,3 +42,5 @@ def part3 (A : Int × Int) : Nat :=
 def solution := ECSolution.mkOfParse parse part1 part2 part3
 
 def main := solution.run
+
+end Quest02
