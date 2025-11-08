@@ -60,7 +60,7 @@ def part1 (l : List Fishbone) : Int :=
 
 def part2 (l : List Fishbone) : Int :=
   let qs := l.map Fishbone.quality
-  qs.max?.merge (· - ·) qs.min? |>.get!
+  qs.max?.get! - qs.min?.get!
 
 def part3 (l : List Fishbone) : Int :=
   l.mergeSort (· > ·) |>.zipIdx 1
