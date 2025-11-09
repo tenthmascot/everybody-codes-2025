@@ -32,8 +32,8 @@ def Fishbone.quality (f : Fishbone) : Int :=
   String.join s |>.toInt!
 
 def FishboneLevel.value (f : FishboneLevel) : Int :=
-  let left := f.left.map ToString.toString |>.getD ""
-  let right := f.right.map ToString.toString |>.getD ""
+  let left := f.left.elim "" ToString.toString
+  let right := f.right.elim "" ToString.toString
   s!"{left}{f.center}{right}".toInt!
 
 def Fishbone.levelValues (f : Fishbone) : List Int :=
