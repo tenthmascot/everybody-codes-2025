@@ -15,13 +15,14 @@ structure Fishbone where
   levels : List FishboneLevel
 deriving Inhabited
 
-def Fishbone.inner.add (l : List FishboneLevel) (val : Int) := Id.run do
-  for h : i in [0:l.length] do
-    if val < l[i].center ∧ l[i].left.isNone then
-      return l.set i ⟨val, l[i].center, l[i].right⟩
-    else if val > l[i].center ∧ l[i].right.isNone then
-      return l.set i ⟨l[i].left, l[i].center, val⟩
-  return l ++ [⟨none, val, none⟩]
+def Fishbone.inner.add (l : List FishboneLevel) (val : Int) : List FishboneLevel := match l with
+  | [] => [⟨none, val, none⟩]
+  | a :: as =>
+    if val < a.center ∧ a.left.isNone
+      then ⟨val, a.center, a.right⟩ :: as
+    else if val > a.center ∧ a.right.isNone
+      then ⟨a.left, a.center, val⟩ :: as
+    else a :: (Fishbone.inner.add as val)
 
 def Fishbone.make (l : List Int) : List FishboneLevel :=
   l.foldl Fishbone.inner.add []
