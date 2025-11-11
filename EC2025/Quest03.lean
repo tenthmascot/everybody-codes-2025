@@ -15,10 +15,7 @@ def part2 (a : List Int) : Int :=
   a.fast_dedup.mergeSort.take 20 |>.sum
 
 def part3 (a : List Int) : Nat :=
-  let counter := a.foldl
-    (fun m val => m.insert val (m.getD val 0 + 1))
-    HashMap.emptyWithCapacity
-  counter.values.max?.getD 0
+  (Counter.ofList a).values.max?.getD 0
 
 def solution := ECSolution.mkOfParse parse part1 part2 part3
 
