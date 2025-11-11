@@ -34,6 +34,7 @@ def part3 (l : List Char) : Nat :=
         let c2 := l[(j % n).toNat]!
         c1.toLower == c2 && c1.isUpper
     ) |>.map (
+      -- intentional Nat subtraction
       fun (i, j) => 1000 - (i / n - j / n).natAbs
     ) |>.sum
   List.range n |>.map single |>.sum
