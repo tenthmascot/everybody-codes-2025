@@ -16,14 +16,6 @@ def parse_rule_single (raw : String) : Std.HashMap Char (HashSet Char) :=
     |>.map (String.Pos.Raw.get · 0)
   {(fst, HashSet.ofList snds)}
 
--- def parse_HashSet (hs : Std.HashSet (Char × Char)) : Std.HashMap Char (HashSet Char) :=
---   hs.fold (
---     fun hs (c1, c2) =>
---       if H : hs.contains c1 then
---         hs.insert c1 <| hs[c1].insert c2
---       else hs.insert c1 {c2}
---   ) ∅
-
 def parse (raw : String) : Data :=
   let lines := raw.splitOn "\n"
   let names := lines[0]!.splitOn ","
