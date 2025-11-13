@@ -9,17 +9,10 @@ def parse (raw : String) : List Char :=
   raw.toList
 
 def part1 (l : List Char) : Nat :=
-  l.sublistsLen 2
-    |>.filter (fun p => p[0]! == 'A' && p[1]! == 'a')
-    |>.length
+  l.all_pairs.countP (fun (c1, c2) => c1 == 'A' && c2 == 'a')
 
 def part2 (l : List Char) : Nat :=
-  l.sublistsLen 2
-    |>.filter (fun p =>
-      p[0]!.toLower == p[1]!
-      && p[0]!.isUpper
-    )
-    |>.length
+  l.all_pairs.countP (fun (c1, c2) => c1.toLower == c2 && c1.isUpper)
 
 def part3 (l : List Char) : Nat :=
   let n := l.length
