@@ -12,14 +12,14 @@ def List.fast_dedup {α} [BEq α] [Hashable α] (l : List α) : List α :=
 Returns successive adjacent pairs from a list.
 
 Examples:
-* `[].pairs = []`
-* `[1].pairs = []`
-* `[1, 2, 3, 4].pairs = [(1, 2), (2, 3), (3, 4)]`
+* `[].adj_pairs = []`
+* `[1].adj_pairs = []`
+* `[1, 2, 3, 4].adj_pairs = [(1, 2), (2, 3), (3, 4)]`
 -/
-def List.pairs {α} (l : List α) : List (α × α) := match l with
+def List.adj_pairs {α} (l : List α) : List (α × α) := match l with
 | [] => []
 | [_] => []
-| a :: b :: as => (a, b) :: (b :: as).pairs
+| a :: b :: as => (a, b) :: (b :: as).adj_pairs
 
 /--
 Returns all sublists of length 2 from a list as pairs.

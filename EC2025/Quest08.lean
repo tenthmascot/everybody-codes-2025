@@ -6,7 +6,7 @@ namespace Quest08
 def quest := "08"
 
 def parse (raw : String) : List (Nat × Nat) :=
-  raw.splitOn "," |>.map String.toNat! |>.pairs
+  raw.splitOn "," |>.map String.toNat! |>.adj_pairs
 
 def isCrossing (a b : Nat × Nat) : Bool :=
   let a := (min a.1 a.2, max a.1 a.2)

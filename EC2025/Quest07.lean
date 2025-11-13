@@ -25,7 +25,7 @@ def parse (raw : String) : Data :=
   ⟨names, rules⟩
 
 def name_valid (data : Data) (name : String) : Bool :=
-  name.toList.pairs.all (
+  name.toList.adj_pairs.all (
     fun (c1, c2) => if H : data.rules.contains c1
       then data.rules[c1].contains c2
       else false
