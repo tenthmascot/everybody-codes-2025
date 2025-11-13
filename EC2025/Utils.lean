@@ -20,3 +20,16 @@ def List.pairs {α} (l : List α) : List (α × α) := match l with
 | [] => []
 | [_] => []
 | a :: b :: as => (a, b) :: (b :: as).pairs
+
+/--
+Returns all sublists of length 2 from a list as pairs.
+Equivalent to Mathlib's `List.sublistsLen 2`, but with a list of pairs.
+
+Examples:
+* `[].all_pairs = []`
+* `[1, 2].all_pairs = [(1, 2)]`
+* `[1, 2, 3, 4].all_pairs = [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]`
+-/
+def List.all_pairs {α} (l : List α) : List (α × α) := match l with
+| [] => []
+| a :: as => as.map (Prod.mk a ·) ++ as.all_pairs
