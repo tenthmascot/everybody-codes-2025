@@ -11,3 +11,4 @@ import EC2025.Quest06
 import EC2025.Quest07
 import EC2025.Quest08
 import EC2025.Quest09
+import EC2025.Quest10
