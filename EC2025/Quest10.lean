@@ -106,7 +106,7 @@ def part3_aux
   (data : Part3Data × Std.HashMap Part3Data Nat) :
     Nat × Std.HashMap Part3Data Nat :=
   match fuel with
-  | 0 => default
+  | 0 => panic! s!"quest {quest} part 3 ran out of fuel"
   | fuel+1 =>
   let (data, store) := data
   if H : data ∈ store then (store[data], store) else
