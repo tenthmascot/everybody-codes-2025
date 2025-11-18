@@ -3,6 +3,10 @@ import EC2025.MathlibUtils -- if Mathlib is imported, this should not be importe
 import EC2025.Utils.Counter
 open Std Batteries
 
+attribute [grind →] Membership.mem.lower Membership.mem.upper Membership.mem.step
+
+macro_rules | `(tactic| get_elem_tactic_extensible) => `(tactic| grind)
+
 /-- Returns the list `l` without duplicates, in some order.
 Uses a HashSet for faster performance over the `List.dedup` function in Mathlib. -/
 def List.fast_dedup {α} [BEq α] [Hashable α] (l : List α) : List α :=
@@ -33,3 +37,27 @@ Examples:
 def List.all_pairs {α} (l : List α) : List (α × α) := match l with
 | [] => []
 | a :: as => as.map (Prod.mk a ·) ++ as.all_pairs
+
+
+/--
+Returns successive adjacent pairs from an array.
+
+Examples:
+* `#[].adj_pairs = #[]`
+* `#[1].adj_pairs = #[]`
+* `#[1, 2, 3, 4].adj_pairs = #[(1, 2), (2, 3), (3, 4)]`
+-/
+def Array.adj_pairs {α} (xs : Array α) : Array (α × α) :=
+  Array.finRange (xs.size - 1) |>.map (fun i => (xs[i.1], xs[i.1+1]))
+
+
+/--
+Returns successive adjacent pairs from a vector.
+
+Examples:
+* `#v[].adj_pairs = #v[]`
+* `#v[1].adj_pairs = #v[]`
+* `#v[1, 2, 3, 4].adj_pairs = #v[(1, 2), (2, 3), (3, 4)]`
+-/
+def Vector.adj_pairs {α n} (xs : Vector α n) : Vector (α × α) (n - 1) :=
+  Vector.finRange (n - 1) |>.map (fun i => (xs[i.1], xs[i.1+1]))
