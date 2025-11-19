@@ -29,8 +29,9 @@ def cycle2 {n} (a : Vector Int n) : Vector Int n :=
 
 def cycle {n} (data : Vector Int n × Phase) : Vector Int n × Phase :=
   let ⟨a, phase⟩ := data
-  let phase := if phase == .Phase2 then phase
-    else if a.adj_pairs.all (fun (x, y) => x ≤ y) then .Phase2 else phase
+  let phase := match phase with
+  | .Phase1 => if a.adj_pairs.all (fun (x, y) => x ≤ y) then .Phase2 else .Phase1
+  | .Phase2 => .Phase2
   let a := match phase with
   | .Phase1 => cycle1 a
   | .Phase2 => cycle2 a
