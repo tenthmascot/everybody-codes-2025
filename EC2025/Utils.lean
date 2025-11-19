@@ -7,6 +7,10 @@ attribute [grind →] Membership.mem.lower Membership.mem.upper Membership.mem.s
 
 macro_rules | `(tactic| get_elem_tactic_extensible) => `(tactic| grind)
 
+/-- The four unit vectors, as `Int × Int`:
+`List.padj4 = [(1, 0), (-1, 0), (0, 1), (0, -1)]`. -/
+def List.padj4 : List (Int × Int) := [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
 /-- Returns the list `l` without duplicates, in some order.
 Uses a HashSet for faster performance over the `List.dedup` function in Mathlib. -/
 def List.fast_dedup {α} [BEq α] [Hashable α] (l : List α) : List α :=
