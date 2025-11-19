@@ -3,10 +3,6 @@ import EC2025.MathlibUtils -- if Mathlib is imported, this should not be importe
 import EC2025.Utils.Counter
 open Std Batteries
 
-attribute [grind →] Membership.mem.lower Membership.mem.upper Membership.mem.step
-
-macro_rules | `(tactic| get_elem_tactic_extensible) => `(tactic| grind)
-
 /-- The four unit vectors, as `Int × Int`:
 `List.padj4 = [(1, 0), (-1, 0), (0, 1), (0, -1)]`. -/
 def List.padj4 : List (Int × Int) := [(1, 0), (-1, 0), (0, 1), (0, -1)]
