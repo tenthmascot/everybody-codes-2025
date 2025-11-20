@@ -14,6 +14,7 @@ def mains := [
   Quest10.main,
   Quest11.main,
   Quest12.main,
+  Quest13.main,
 ]
 
 def main (args : List String) : IO Unit := do
